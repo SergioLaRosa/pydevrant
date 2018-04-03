@@ -1,9 +1,20 @@
+# Written by Sergio La Rosa (sergio.larosa89@gmail.com)
+# Part of "pydevrant" package
+# https://github.com/SergioLaRosa/pydevrant
+
 from setuptools import setup
+
+try:
+   import pypandoc
+   long_description = pypandoc.convert('README.md', 'rst')
+except (IOError, ImportError):
+   long_description = ''
 
 setup(
     name='pydevrant',
-    version='0.1',
+    version='0.12',
     description='Unofficial Python wrapper for the public devRant API',
+    long_description=long_description,
     url='https://github.com/SergioLaRosa/pydevrant',
     author='Sergio La Rosa',
     author_email='sergio.larosa89@gmail.com',
