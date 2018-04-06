@@ -4,6 +4,7 @@
 
 import requests
 import json
+import time     #for timestamps in auth-related requests
 
 
 class RantParser:
@@ -62,3 +63,28 @@ class RantParser:
         self._url = self._main_url + "devrant/search?app=3&term=" + str(term)
         self._res = requests.get(self._url)
         return json.loads(self._res.text)
+
+class Auth:
+    
+    def login(self, email, password):
+        '''
+        Auths user and gets important user attributes
+        '''
+        self._url = "https://www.devrant.io/api/users/auth-token"
+        data = {
+            "app": 3,
+            "username": email,
+            "password": password,
+            "plat": 3,
+            "sid": time.time(),
+            "seid": 6
+        }
+        self._res = requests.post(self._url, data=data)
+        if json.loads(self._res.text)['success'] == False:
+            return False
+        self.uid = json.loads(self._res.text)['auth_token']['user_id']
+        self.token = json.loads(self._res.text)['auth_token']['key']
+        return True
+
+
+
