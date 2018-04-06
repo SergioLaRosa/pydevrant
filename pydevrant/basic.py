@@ -83,8 +83,29 @@ class Auth:
         if json.loads(self._res.text)['success'] == False:
             return False
         self.uid = json.loads(self._res.text)['auth_token']['user_id']
-        self.token = json.loads(self._res.text)['auth_token']['key']
+        self.token_id = json.loads(self._res.text)['auth_token']['id']
+        self.token_key = json.loads(self._res.text)['auth_token']['key']
         return True
+
+    def vote(self, rant_id, value):
+        endpoint = "https://devrant.com/api/devrant/rants/"+str(rant_id)+"/vote"
+        data = {
+            "app": 3,
+            "token_id": self.token_id,
+            "token_key": self.token_key,
+            "user_id": self.uid,
+            "plat": 3,
+            "sid": time.time(),
+            "seid": 155,
+            "vote": value
+        }
+        if value == -1:
+            #if user is downvoting, reason needs to be provided
+            data["reason"] = 0
+        self._res = requests.post(endpoint, data=data)
+        return json.loads(self._res.text)
+
+
 
 
 
