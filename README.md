@@ -18,10 +18,39 @@ Currently, you can:
 - Get a rant with comments
 - Search rants
 - Get user profile
+- Login with username/password
+- Post a rant
+- Vote a rant
+- Vote a comment
 
-Results are JSON-formatted data.
+(Note: search results are JSON-formatted data)
 
 ## Example
+**Post a rant**
+
+```
+from pydevrant import *
+
+client = Auth()
+user = client.login("USERNAME", "PASSWORD")
+
+#first argument is body (string)
+#second argument is tags (string, make sure comma seperated)
+#third argument is type (int, 1 for rant, 5 for collab)
+
+client.post("this is my rant, do you like it?", "swift, react, js", 1)
+```
+**Vote a rant/comment**
+
+```
+#first argument is type (rant/comment)
+#second argument is RANT_ID
+#third argument is value. (+1 for upvote, -1 for downvote)
+#(can only be +1 or -1. server rejects requests if any other data)
+
+client.vote("rant", 1292812, +1)    #for voting on a rant
+client.vote("comment", 1372121, +1)    #for voting on a comment
+```
 **Find the top rants but limit the results to just one**
 
 ```Python
@@ -72,3 +101,4 @@ The output will be something like this (some parts removed for brevity):
  'success': True,
  'wrw': 98}
 ```
+

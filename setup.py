@@ -1,4 +1,5 @@
 # Written by Sergio La Rosa (sergio.larosa89@gmail.com)
+# and John Leonardo (hey@jdleo.me)
 # Part of "pydevrant" package
 # https://github.com/SergioLaRosa/pydevrant
 
@@ -12,7 +13,7 @@ except (IOError, ImportError):
 
 setup(
     name='pydevrant',
-    version='0.12',
+    version='0.2',
     description='Unofficial Python wrapper for the public devRant API',
     long_description=long_description,
     url='https://github.com/SergioLaRosa/pydevrant',
