@@ -1,4 +1,5 @@
 # Written by Sergio La Rosa (sergio.larosa89@gmail.com)
+# and John Leonardo (hey@jdleo.me)
 # Part of "pydevrant" package
 # https://github.com/SergioLaRosa/pydevrant
 
@@ -64,6 +65,7 @@ class RantParser:
         self._res = requests.get(self._url)
         return json.loads(self._res.text)
 
+#Credits: auth class made by John Leonardo (thank you, John!)
 class Auth:
     
     def login(self, email, password):
