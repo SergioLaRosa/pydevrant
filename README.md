@@ -28,7 +28,7 @@ Currently, you can:
 ## Example
 **Post a rant**
 
-```
+```Python
 from pydevrant import *
 
 client = Auth()
@@ -42,7 +42,7 @@ client.post("this is my rant, do you like it?", "swift, react, js", 1)
 ```
 **Vote a rant/comment**
 
-```
+```Python
 #first argument is type (rant/comment)
 #second argument is RANT_ID
 #third argument is value. (+1 for upvote, -1 for downvote)
