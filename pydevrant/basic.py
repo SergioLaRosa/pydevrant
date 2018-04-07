@@ -88,6 +88,9 @@ class Auth:
         return True
 
     def vote(self, type, rant_id, value):
+        '''
+        Vote on a post or comment
+        '''
         if type == "rant":
             self.voteUrl = "https://devrant.com/api/devrant/rants/"+str(rant_id)+"/vote"
         elif type == "comment":
@@ -106,6 +109,23 @@ class Auth:
             #if user is downvoting, reason needs to be provided
             data["reason"] = 0
         self._res = requests.post(self.voteUrl, data=data)
+        return json.loads(self._res.text)
+
+    def post(self, body, tags, type):
+        '''
+        Make a post from user's account
+        '''
+        self.postUrl = "https://devrant.com/api/devrant/rants"
+        data = {
+            "app": 3,
+            "rant": body,
+            "tags": tags,
+            "token_id": self.token_id,
+            "token_key": self.token_key,
+            "user_id": self.uid,
+            "type": type
+        }
+        self._res = requests.post(self.postUrl, data=data)
         return json.loads(self._res.text)
 
 
