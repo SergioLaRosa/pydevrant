@@ -6,14 +6,14 @@
 from setuptools import setup
 
 try:
-   import pypandoc
-   long_description = pypandoc.convert('README.md', 'rst')
+    import pypandoc
+    long_description = pypandoc.convert('README.md', 'rst')
 except (IOError, ImportError):
-   long_description = ''
+    long_description = ''
 
 setup(
     name='pydevrant',
-    version='0.2',
+    version='0.21',
     description='Unofficial Python wrapper for the public devRant API',
     long_description=long_description,
     url='https://github.com/SergioLaRosa/pydevrant',
