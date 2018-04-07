@@ -5,7 +5,7 @@
 
 import requests
 import json
-import time     #for timestamps in auth-related requests
+import time  # for timestamps in auth-related requests
 
 
 class RantParser:
@@ -65,9 +65,11 @@ class RantParser:
         self._res = requests.get(self._url)
         return json.loads(self._res.text)
 
-#Credits: auth class made by John Leonardo (thank you, John!)
+# Credits: auth class made by John Leonardo (thank you, John!)
+
+
 class Auth:
-    
+
     def login(self, email, password):
         '''
         Auths user and gets important user attributes
@@ -94,9 +96,11 @@ class Auth:
         Vote on a post or comment
         '''
         if type == "rant":
-            self.voteUrl = "https://devrant.com/api/devrant/rants/"+str(rant_id)+"/vote"
+            self.voteUrl = "https://devrant.com/api/devrant/rants/" + \
+                str(rant_id) + "/vote"
         elif type == "comment":
-            self.voteUrl = "https://devrant.com/api/comments/"+str(rant_id)+"/vote"
+            self.voteUrl = "https://devrant.com/api/comments/" + \
+                str(rant_id) + "/vote"
         data = {
             "app": 3,
             "token_id": self.token_id,
@@ -108,7 +112,7 @@ class Auth:
             "vote": value
         }
         if value == -1:
-            #if user is downvoting, reason needs to be provided
+            # if user is downvoting, reason needs to be provided
             data["reason"] = 0
         self._res = requests.post(self.voteUrl, data=data)
         return json.loads(self._res.text)
@@ -129,8 +133,3 @@ class Auth:
         }
         self._res = requests.post(self.postUrl, data=data)
         return json.loads(self._res.text)
-
-
-
-
-
